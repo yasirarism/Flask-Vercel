@@ -45,7 +45,7 @@ def google():
                     'link': link,
                     'snippet': snippet,
                 })
-            return jsonify({'result': data})
+            return {'result': data}
         except Exception as e:
             return e
     else:
