@@ -6,14 +6,15 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello():
+def get_root():
+    print('sending root')
+    return render_template('index.html')
+
+
+@app.route('/api/docs')
+def get_docs():
+    print('sending docs')
     return render_template('swaggerui.html')
-    # return render_template('index.html')
-
-
-@app.route('/test')
-def test():
-    return 'Test'
 
 
 @app.route('/google/', methods=['GET'])
