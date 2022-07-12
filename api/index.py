@@ -18,13 +18,14 @@ def test():
 @app.route('/google/', methods=['GET'])
 def google():
     if request.args.get('q'):
+        query = request.args.get('q')
         try:
             headers = {
                 'User-Agent':
                 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                 'Chrome/61.0.3163.100 Safari/537.36'
             }
-            html = requests.get(f'https://www.google.com/search?q={q}',
+            html = requests.get(f'https://www.google.com/search?q={query}',
                                 headers=headers)
             soup = BeautifulSoup(html.text, 'lxml')
 
