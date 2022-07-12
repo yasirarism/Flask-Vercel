@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from bs4 import BeautifulSoup
+from flask import request
 import requests
 
 app = Flask(__name__)
