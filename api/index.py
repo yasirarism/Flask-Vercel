@@ -1,6 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from bs4 import BeautifulSoup
-from flask import request
 import requests, json
 
 app = Flask(__name__)
@@ -25,6 +24,8 @@ def google():
         }
         html = requests.get(f'https://www.google.com/search?q={q}', headers=headers)
         soup = BeautifulSoup(html.text, 'lxml')
+	
+	data = []
 
         for result in soup.select('.tF2Cxc'):
            title = result.select_one('.DKV0Md').text
@@ -35,11 +36,12 @@ def google():
              snippet = "-"
 
            # appending data to an array
-           return {
+           data.append({
              'title': title,
              'link': link,
              'snippet': snippet,
-           }
+           })
+        return data
       except Exception as e:
        return e
   else:
