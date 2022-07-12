@@ -47,7 +47,7 @@ def google():
                 })
             return {'result': data}
         except Exception as e:
-            return e
+            print(e)
     else:
         return {'success': False, 'msg': 'Isi parameter,'}
 
