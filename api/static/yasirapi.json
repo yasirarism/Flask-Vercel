@@ -1,908 +1,1099 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.2",
   "info": {
-    "title": "Swagger Petstore",
-    "description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
-    "termsOfService": "http://swagger.io/terms/",
+    "title": "Wibu API",
+    "description": "\n**Wibu API**\n\nWibu API was created to help make things easier for everyone\n\n**Wibu API can be implemented to your application, its free!**\n\n**For worked brawlstars api endpoint please use** <https://api.wibu-api.eu.org/docs#/Brawlstars>\n",
     "contact": {
-      "email": "apiteam@swagger.io"
+      "name": "Yoga Pranata",
+      "url": "https://www.isekai.eu.org",
+      "email": "ahmadzaylani001@gmail.com"
     },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-    },
-    "version": "1.0.0"
+    "version": "0.1.8"
   },
-  "externalDocs": {
-    "description": "Find out more about Swagger",
-    "url": "http://swagger.io"
-  },
-  "servers": [
-    {
-      "url": "https://petstore.swagger.io/v2"
-    },
-    {
-      "url": "http://petstore.swagger.io/v2"
-    }
-  ],
-  "tags": [
-    {
-      "name": "pet",
-      "description": "Everything about your Pets",
-      "externalDocs": {
-        "description": "Find out more",
-        "url": "http://swagger.io"
-      }
-    },
-    {
-      "name": "store",
-      "description": "Access to Petstore orders"
-    },
-    {
-      "name": "user",
-      "description": "Operations about user",
-      "externalDocs": {
-        "description": "Find out more about our store",
-        "url": "http://swagger.io"
-      }
-    }
-  ],
   "paths": {
-    "/pet": {
-      "put": {
+    "/api/anime/lendrive": {
+      "get": {
         "tags": [
-          "pet"
+          "Anime"
         ],
-        "summary": "Update an existing pet",
-        "operationId": "updatePet",
-        "requestBody": {
-          "description": "Pet object that needs to be added to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Pet"
-              }
+        "summary": "Lendrive",
+        "operationId": "lendrive_api_anime_lendrive_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Link",
+              "type": "string"
             },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Pet"
+            "name": "link",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
               }
             }
           },
-          "required": true
-        },
-        "responses": {
-          "400": {
-            "description": "Invalid ID supplied",
-            "content": {}
-          },
-          "404": {
-            "description": "Pet not found",
-            "content": {}
-          },
-          "405": {
-            "description": "Validation exception",
-            "content": {}
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ],
-        "x-codegen-request-body-name": "body"
-      },
-      "post": {
-        "tags": [
-          "pet"
-        ],
-        "summary": "Add a new pet to the store",
-        "operationId": "addPet",
-        "requestBody": {
-          "description": "Pet object that needs to be added to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Pet"
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
               }
+            }
+          }
+        }
+      }
+    },
+    "/api/anime/kusonime": {
+      "get": {
+        "tags": [
+          "Anime"
+        ],
+        "summary": "Kusonime",
+        "operationId": "kusonime_api_anime_kusonime_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Link",
+              "type": "string"
             },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Pet"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "405": {
-            "description": "Invalid input",
-            "content": {}
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ],
-        "x-codegen-request-body-name": "body"
-      }
-    },
-    "/pet/findByStatus": {
-      "get": {
-        "tags": [
-          "pet"
-        ],
-        "summary": "Finds Pets by status",
-        "description": "Multiple status values can be provided with comma separated strings",
-        "operationId": "findPetsByStatus",
-        "parameters": [
-          {
-            "name": "status",
-            "in": "query",
-            "description": "Status values that need to be considered for filter",
-            "required": true,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "default": "available",
-                "enum": [
-                  "available",
-                  "pending",
-                  "sold"
-                ]
-              }
-            }
+            "name": "link",
+            "in": "query"
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Successful Response",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
+                "schema": {}
               }
             }
           },
-          "400": {
-            "description": "Invalid status value",
-            "content": {}
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
-      }
-    },
-    "/pet/findByTags": {
-      "get": {
-        "tags": [
-          "pet"
-        ],
-        "summary": "Finds Pets by tags",
-        "description": "Muliple tags can be provided with comma separated strings. Use         tag1, tag2, tag3 for testing.",
-        "operationId": "findPetsByTags",
-        "parameters": [
-          {
-            "name": "tags",
-            "in": "query",
-            "description": "Tags to filter by",
-            "required": true,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid tag value",
-            "content": {}
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
-      }
-    },
-    "/pet/{petId}": {
-      "get": {
-        "tags": [
-          "pet"
-        ],
-        "summary": "Find pet by ID",
-        "description": "Returns a single pet",
-        "operationId": "getPetById",
-        "parameters": [
-          {
-            "name": "petId",
-            "in": "path",
-            "description": "ID of pet to return",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied",
-            "content": {}
-          },
-          "404": {
-            "description": "Pet not found",
-            "content": {}
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "pet"
-        ],
-        "summary": "Updates a pet in the store with form data",
-        "operationId": "updatePetWithForm",
-        "parameters": [
-          {
-            "name": "petId",
-            "in": "path",
-            "description": "ID of pet that needs to be updated",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "Updated name of the pet"
-                  },
-                  "status": {
-                    "type": "string",
-                    "description": "Updated status of the pet"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "405": {
-            "description": "Invalid input",
-            "content": {}
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "pet"
-        ],
-        "summary": "Deletes a pet",
-        "operationId": "deletePet",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "petId",
-            "in": "path",
-            "description": "Pet id to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Invalid ID supplied",
-            "content": {}
-          },
-          "404": {
-            "description": "Pet not found",
-            "content": {}
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
-      }
-    },
-    "/pet/{petId}/uploadImage": {
-      "post": {
-        "tags": [
-          "pet"
-        ],
-        "summary": "uploads an image",
-        "operationId": "uploadFile",
-        "parameters": [
-          {
-            "name": "petId",
-            "in": "path",
-            "description": "ID of pet to update",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "properties": {
-                  "additionalMetadata": {
-                    "type": "string",
-                    "description": "Additional data to pass to server"
-                  },
-                  "file": {
-                    "type": "string",
-                    "description": "file to upload",
-                    "format": "binary"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "successful operation",
+          "422": {
+            "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiResponse"
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
-      }
-    },
-    "/store/inventory": {
-      "get": {
-        "tags": [
-          "store"
-        ],
-        "summary": "Returns pet inventories by status",
-        "description": "Returns a map of status codes to quantities",
-        "operationId": "getInventory",
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "integer",
-                    "format": "int32"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/store/order": {
-      "post": {
-        "tags": [
-          "store"
-        ],
-        "summary": "Place an order for a pet",
-        "operationId": "placeOrder",
-        "requestBody": {
-          "description": "order placed for purchasing the pet",
-          "content": {
-            "*/*": {
-              "schema": {
-                "$ref": "#/components/schemas/Order"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Order"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Order"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid Order",
-            "content": {}
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      }
-    },
-    "/store/order/{orderId}": {
-      "get": {
-        "tags": [
-          "store"
-        ],
-        "summary": "Find purchase order by ID",
-        "description": "For valid response try integer IDs with value >= 1 and <= 10.         Other values will generated exceptions",
-        "operationId": "getOrderById",
-        "parameters": [
-          {
-            "name": "orderId",
-            "in": "path",
-            "description": "ID of pet that needs to be fetched",
-            "required": true,
-            "schema": {
-              "maximum": 10,
-              "minimum": 1,
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Order"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Order"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied",
-            "content": {}
-          },
-          "404": {
-            "description": "Order not found",
-            "content": {}
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "store"
-        ],
-        "summary": "Delete purchase order by ID",
-        "description": "For valid response try integer IDs with positive integer value.         Negative or non-integer values will generate API errors",
-        "operationId": "deleteOrder",
-        "parameters": [
-          {
-            "name": "orderId",
-            "in": "path",
-            "description": "ID of the order that needs to be deleted",
-            "required": true,
-            "schema": {
-              "minimum": 1,
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Invalid ID supplied",
-            "content": {}
-          },
-          "404": {
-            "description": "Order not found",
-            "content": {}
           }
         }
       }
     },
-    "/user": {
-      "post": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Create user",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "createUser",
-        "requestBody": {
-          "description": "Created user object",
-          "content": {
-            "*/*": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "default": {
-            "description": "successful operation",
-            "content": {}
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      }
-    },
-    "/user/createWithArray": {
-      "post": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Creates list of users with given input array",
-        "operationId": "createUsersWithArrayInput",
-        "requestBody": {
-          "description": "List of user object",
-          "content": {
-            "*/*": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "default": {
-            "description": "successful operation",
-            "content": {}
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      }
-    },
-    "/user/createWithList": {
-      "post": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Creates list of users with given input array",
-        "operationId": "createUsersWithListInput",
-        "requestBody": {
-          "description": "List of user object",
-          "content": {
-            "*/*": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "default": {
-            "description": "successful operation",
-            "content": {}
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      }
-    },
-    "/user/login": {
+    "/api/anime/doronime": {
       "get": {
         "tags": [
-          "user"
+          "Anime"
         ],
-        "summary": "Logs user into the system",
-        "operationId": "loginUser",
+        "summary": "Doronime",
+        "operationId": "doronime_api_anime_doronime_get",
         "parameters": [
           {
-            "name": "username",
-            "in": "query",
-            "description": "The user name for login",
             "required": true,
             "schema": {
+              "title": "Link",
               "type": "string"
-            }
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "description": "The password for login in clear text",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "headers": {
-              "X-Rate-Limit": {
-                "description": "calls per hour allowed by the user",
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              },
-              "X-Expires-After": {
-                "description": "date in UTC when token expires",
-                "schema": {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              }
             },
-            "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid username/password supplied",
-            "content": {}
-          }
-        }
-      }
-    },
-    "/user/logout": {
-      "get": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Logs out current logged in user session",
-        "operationId": "logoutUser",
-        "responses": {
-          "default": {
-            "description": "successful operation",
-            "content": {}
-          }
-        }
-      }
-    },
-    "/user/{username}": {
-      "get": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Get user by user name",
-        "operationId": "getUserByName",
-        "parameters": [
-          {
-            "name": "username",
-            "in": "path",
-            "description": "The name that needs to be fetched. Use user1 for testing. ",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "name": "link",
+            "in": "query"
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Successful Response",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              },
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
-          },
-          "400": {
-            "description": "Invalid username supplied",
-            "content": {}
-          },
-          "404": {
-            "description": "User not found",
-            "content": {}
           }
         }
-      },
-      "put": {
+      }
+    },
+    "/api/drama/wibusubs": {
+      "get": {
         "tags": [
-          "user"
+          "Drama and Film"
         ],
-        "summary": "Updated user",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "updateUser",
+        "summary": "Wibusubs",
+        "operationId": "wibusubs_api_drama_wibusubs_get",
         "parameters": [
           {
-            "name": "username",
-            "in": "path",
-            "description": "name that need to be updated",
             "required": true,
             "schema": {
+              "title": "Link",
               "type": "string"
-            }
+            },
+            "name": "link",
+            "in": "query"
           }
         ],
-        "requestBody": {
-          "description": "Updated user object",
-          "content": {
-            "*/*": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
               }
             }
           },
-          "required": true
-        },
-        "responses": {
-          "400": {
-            "description": "Invalid user supplied",
-            "content": {}
-          },
-          "404": {
-            "description": "User not found",
-            "content": {}
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      },
-      "delete": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Delete user",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "deleteUser",
-        "parameters": [
-          {
-            "name": "username",
-            "in": "path",
-            "description": "The name that needs to be deleted",
-            "required": true,
-            "schema": {
-              "type": "string"
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
             }
           }
+        }
+      }
+    },
+    "/api/manga/rawkuma": {
+      "get": {
+        "tags": [
+          "Manga"
+        ],
+        "summary": "Rawkuma",
+        "operationId": "rawkuma_api_manga_rawkuma_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Link",
+              "type": "string"
+            },
+            "name": "link",
+            "in": "query"
+          }
         ],
         "responses": {
-          "400": {
-            "description": "Invalid username supplied",
-            "content": {}
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
           },
-          "404": {
-            "description": "User not found",
-            "content": {}
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/manga/westmanga": {
+      "get": {
+        "tags": [
+          "Manga"
+        ],
+        "summary": "Westmanga",
+        "operationId": "westmanga_api_manga_westmanga_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Link",
+              "type": "string"
+            },
+            "name": "link",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/manga/doudesu": {
+      "get": {
+        "tags": [
+          "Manga"
+        ],
+        "summary": "Doujindesu",
+        "operationId": "doujindesu_api_manga_doudesu_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Link",
+              "type": "string"
+            },
+            "name": "link",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/anime/nsfw/ahegao": {
+      "get": {
+        "tags": [
+          "AniPics NSFW"
+        ],
+        "summary": "Ahegao",
+        "operationId": "ahegao_api_anime_nsfw_ahegao_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/anime/nsfw/waifu": {
+      "get": {
+        "tags": [
+          "AniPics NSFW"
+        ],
+        "summary": "Waifu Nsfw",
+        "operationId": "waifu_nsfw_api_anime_nsfw_waifu_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/anime/nsfw/neko": {
+      "get": {
+        "tags": [
+          "AniPics NSFW"
+        ],
+        "summary": "Neko Nsfw",
+        "operationId": "neko_nsfw_api_anime_nsfw_neko_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/anime/nsfw/trap": {
+      "get": {
+        "tags": [
+          "AniPics NSFW"
+        ],
+        "summary": "Trap",
+        "operationId": "trap_api_anime_nsfw_trap_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/anime/nsfw/bj": {
+      "get": {
+        "tags": [
+          "AniPics NSFW"
+        ],
+        "summary": "Blowjob",
+        "operationId": "blowjob_api_anime_nsfw_bj_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/porn/jav": {
+      "get": {
+        "tags": [
+          "Porn"
+        ],
+        "summary": "Jav",
+        "operationId": "jav_api_porn_jav_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/porn/gif": {
+      "get": {
+        "tags": [
+          "Porn"
+        ],
+        "summary": "Porn Gif",
+        "operationId": "porn_gif_api_porn_gif_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/booru/nsfw/rb": {
+      "get": {
+        "tags": [
+          "Booru"
+        ],
+        "summary": "Realbooru",
+        "operationId": "realbooru_api_booru_nsfw_rb_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/booru/nsfw/gb": {
+      "get": {
+        "tags": [
+          "Booru"
+        ],
+        "summary": "Gelbooru Nsfw",
+        "operationId": "gelbooru_nsfw_api_booru_nsfw_gb_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/booru/sfw/gb": {
+      "get": {
+        "tags": [
+          "Booru"
+        ],
+        "summary": "Gelbooru Sfw",
+        "operationId": "gelbooru_sfw_api_booru_sfw_gb_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/booru/sfw/sb": {
+      "get": {
+        "tags": [
+          "Booru"
+        ],
+        "summary": "Safebooru",
+        "operationId": "safebooru_api_booru_sfw_sb_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/google/search": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Google Search",
+        "operationId": "google_search_api_google_search_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Query",
+              "type": "string"
+            },
+            "name": "query",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lk21/search": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Lk21 Search",
+        "operationId": "lk21_search_api_lk21_search_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Title",
+              "type": "string"
+            },
+            "name": "title",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/etc/nsfw/tw": {
+      "get": {
+        "tags": [
+          "Other"
+        ],
+        "summary": "Twitter",
+        "operationId": "twitter_api_etc_nsfw_tw_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/etc/gsm/search": {
+      "get": {
+        "tags": [
+          "Other"
+        ],
+        "summary": "Device Search",
+        "operationId": "device_search_api_etc_gsm_search_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Query",
+              "type": "string"
+            },
+            "name": "query",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/etc/gsm/slug": {
+      "get": {
+        "tags": [
+          "Other"
+        ],
+        "summary": "Slug Info",
+        "operationId": "slug_info_api_etc_gsm_slug_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Query",
+              "type": "string"
+            },
+            "name": "query",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/gi/user": {
+      "get": {
+        "tags": [
+          "Genshin Impact"
+        ],
+        "summary": "Genshin Impact Users",
+        "operationId": "genshin_impact_users_api_game_gi_user_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Uid",
+              "type": "integer"
+            },
+            "name": "uid",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/gi/character": {
+      "get": {
+        "tags": [
+          "Genshin Impact"
+        ],
+        "summary": "Genshin Impact Character",
+        "operationId": "genshin_impact_character_api_game_gi_character_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Name",
+              "type": "string"
+            },
+            "name": "name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/gi/enemy": {
+      "get": {
+        "tags": [
+          "Genshin Impact"
+        ],
+        "summary": "Genshin Impact Enemy",
+        "operationId": "genshin_impact_enemy_api_game_gi_enemy_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Name",
+              "type": "string"
+            },
+            "name": "name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/gi/artifact": {
+      "get": {
+        "tags": [
+          "Genshin Impact"
+        ],
+        "summary": "Genshin Impact Artifact",
+        "operationId": "genshin_impact_artifact_api_game_gi_artifact_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Name",
+              "type": "string"
+            },
+            "name": "name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/gi/element": {
+      "get": {
+        "tags": [
+          "Genshin Impact"
+        ],
+        "summary": "Genshin Impact Element",
+        "operationId": "genshin_impact_element_api_game_gi_element_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Name",
+              "type": "string"
+            },
+            "name": "name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/gi/weapon": {
+      "get": {
+        "tags": [
+          "Genshin Impact"
+        ],
+        "summary": "Genshin Impact Weapon",
+        "operationId": "genshin_impact_weapon_api_game_gi_weapon_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Name",
+              "type": "string"
+            },
+            "name": "name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/brawl/player": {
+      "get": {
+        "tags": [
+          "Brawlstars"
+        ],
+        "summary": "Brawl Player",
+        "operationId": "brawl_player_api_game_brawl_player_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Playertag",
+              "type": "string"
+            },
+            "name": "playerTag",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/brawl/player/log": {
+      "get": {
+        "tags": [
+          "Brawlstars"
+        ],
+        "summary": "Brawl Player Log",
+        "operationId": "brawl_player_log_api_game_brawl_player_log_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Playertag",
+              "type": "string"
+            },
+            "name": "playerTag",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/brawl/club": {
+      "get": {
+        "tags": [
+          "Brawlstars"
+        ],
+        "summary": "Brawl Club",
+        "operationId": "brawl_club_api_game_brawl_club_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Clubtag",
+              "type": "string"
+            },
+            "name": "clubTag",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/brawl/club/member": {
+      "get": {
+        "tags": [
+          "Brawlstars"
+        ],
+        "summary": "Brawl Club Member",
+        "operationId": "brawl_club_member_api_game_brawl_club_member_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Clubtag",
+              "type": "string"
+            },
+            "name": "clubTag",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/brawl/event": {
+      "get": {
+        "tags": [
+          "Brawlstars"
+        ],
+        "summary": "Brawl Event",
+        "operationId": "brawl_event_api_game_brawl_event_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
           }
         }
       }
@@ -910,194 +1101,94 @@
   },
   "components": {
     "schemas": {
-      "Order": {
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "petId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "shipDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "status": {
-            "type": "string",
-            "description": "Order Status",
-            "enum": [
-              "placed",
-              "approved",
-              "delivered"
-            ]
-          },
-          "complete": {
-            "type": "boolean",
-            "default": false
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
           }
-        },
-        "xml": {
-          "name": "Order"
         }
       },
-      "Category": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "xml": {
-          "name": "Category"
-        }
-      },
-      "User": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "username": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "userStatus": {
-            "type": "integer",
-            "description": "User Status",
-            "format": "int32"
-          }
-        },
-        "xml": {
-          "name": "User"
-        }
-      },
-      "Tag": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "xml": {
-          "name": "Tag"
-        }
-      },
-      "Pet": {
+      "ValidationError": {
+        "title": "ValidationError",
         "required": [
-          "name",
-          "photoUrls"
+          "loc",
+          "msg",
+          "type"
         ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "category": {
-            "$ref": "#/components/schemas/Category"
-          },
-          "name": {
-            "type": "string",
-            "example": "doggie"
-          },
-          "photoUrls": {
+          "loc": {
+            "title": "Location",
             "type": "array",
-            "xml": {
-              "name": "photoUrl",
-              "wrapped": true
-            },
             "items": {
-              "type": "string"
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
             }
           },
-          "tags": {
-            "type": "array",
-            "xml": {
-              "name": "tag",
-              "wrapped": true
-            },
-            "items": {
-              "$ref": "#/components/schemas/Tag"
-            }
-          },
-          "status": {
-            "type": "string",
-            "description": "pet status in the store",
-            "enum": [
-              "available",
-              "pending",
-              "sold"
-            ]
-          }
-        },
-        "xml": {
-          "name": "Pet"
-        }
-      },
-      "ApiResponse": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32"
+          "msg": {
+            "title": "Message",
+            "type": "string"
           },
           "type": {
-            "type": "string"
-          },
-          "message": {
+            "title": "Error Type",
             "type": "string"
           }
         }
-      }
-    },
-    "securitySchemes": {
-      "petstore_auth": {
-        "type": "oauth2",
-        "flows": {
-          "implicit": {
-            "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-            "scopes": {
-              "write:pets": "modify pets in your account",
-              "read:pets": "read your pets"
-            }
-          }
-        }
-      },
-      "api_key": {
-        "type": "apiKey",
-        "name": "api_key",
-        "in": "header"
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Anime",
+      "description": "Scrape download link and details from Anime sites"
+    },
+    {
+      "name": "Manga",
+      "description": "Scrape download link from Manga and Doujin sites"
+    },
+    {
+      "name": "Drama and Film",
+      "description": "Scrape download link from Film and Drama sites"
+    },
+    {
+      "name": "AniPics NSFW",
+      "description": "Get a random NSFW Anime pictures"
+    },
+    {
+      "name": "Genshin Impact",
+      "description": "Get information about users, artifacts, characters, elements, enemies, weapons"
+    },
+    {
+      "name": "Brawlstars",
+      "description": "Get brawlstars player details, battle log, clubs or events"
+    },
+    {
+      "name": "Search",
+      "description": "Some search engine and website search parser"
+    },
+    {
+      "name": "Porn",
+      "description": "Get a random Porn pict, gif or video"
+    },
+    {
+      "name": "Booru",
+      "description": "Get a random Booru pict, gif or video (SFW or NSFW)"
+    },
+    {
+      "name": "Other",
+      "description": "Some other uncategorized endpoint"
+    }
+  ]
 }
