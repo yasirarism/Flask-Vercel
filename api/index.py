@@ -14,6 +14,42 @@ def hello():
 def test():
     return 'Test'
 
+@app.route('/google/', methods=['GET'])
+def google():
+    if request.args.get('q'):
+        query = request.args.get('q')
+        try:
+            headers = {
+                'User-Agent':
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                'Chrome/61.0.3163.100 Safari/537.36'
+            }
+            html = requests.get(f'https://www.google.com/search?q={query}',
+                                headers=headers)
+            soup = BeautifulSoup(html.text, 'html.parser')
+
+            data = []
+
+            for result in soup.select('.tF2Cxc'):
+                title = result.select_one('.DKV0Md').text
+                link = result.select_one('.yuRUbf a')['href']
+                try:
+                    snippet = result.select_one('#rso .lyLwlc').text
+                except:
+                    snippet = "-"
+
+                # appending data to an array
+                data.append({
+                    'title': title,
+                    'link': link,
+                    'snippet': snippet,
+                })
+            return {'success': True, 'info': 'Join telegram channel @YasirPediaChannel for updates.', 'result': data}
+        except Exception as e:
+            print(e)
+    else:
+        return {'success': False, 'msg': 'Isi parameter query gaes', 'info': 'Join telegram channel @YasirPediaChannel for updates.', }
+
 
 @app.route('/google/', methods=['GET'])
 def google():
