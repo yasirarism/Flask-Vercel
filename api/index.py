@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from bs4 import BeautifulSoup
 from flask import request
-import requests
+import requests, json
 
 app = Flask(__name__)
 
@@ -23,7 +23,7 @@ def google():
          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '   
          'Chrome/61.0.3163.100 Safari/537.36'   
         }
-        html = requests.get(f'https://www.google.com/search?q=liburan')
+        html = requests.get(f'https://www.google.com/search?q={q}', headers=headers)
         soup = BeautifulSoup(html.text, 'lxml')
 
         # collect data
@@ -45,10 +45,7 @@ def google():
            })
         return data
       except Exception as e:
-       return {
-         'success' : False, 
-         'msg' : e
-       } 
+       return e
   else:
       return {
         'success' : False, 
