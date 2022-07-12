@@ -27,7 +27,7 @@ def google():
             }
             html = requests.get(f'https://www.google.com/search?q={query}',
                                 headers=headers)
-            soup = BeautifulSoup(html.text, 'lxml')
+            soup = BeautifulSoup(html.text, 'html.parser')
 
             data = []
 
