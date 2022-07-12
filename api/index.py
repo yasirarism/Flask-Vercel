@@ -18,7 +18,7 @@ def get_docs():
 
 
 @app.route('/lk21/', methods=['GET'])
-def google():
+def lk21():
     if request.args.get('q'):
         query = request.args.get('q')
         return {
