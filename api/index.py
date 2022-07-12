@@ -23,7 +23,7 @@ def google():
          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '   
          'Chrome/61.0.3163.100 Safari/537.36'   
         }
-        html = requests.get(f'https://www.google.com/search?q={q}')
+        html = requests.get(f'https://www.google.com/search?q=liburan')
         soup = BeautifulSoup(html.text, 'lxml')
 
         # collect data
