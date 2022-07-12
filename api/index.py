@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from bs4 import BeautifulSoup
+import requests
 
 app = Flask(__name__)
 
@@ -13,8 +14,42 @@ def hello():
 def test():
     return 'Test'
 
+@app.route('/google/', methods=['GET'])
+def google():
+  if request.args.get('q'):
+      headers = {   
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '   
+        'Chrome/61.0.3163.100 Safari/537.36'   
+      }
+      html = requests.get(f'https://www.google.com/search?q={q}')
+      soup = BeautifulSoup(html.text, 'lxml')
+
+      # collect data
+      data = []
+
+      for result in soup.select('.tF2Cxc'):
+          title = result.select_one('.DKV0Md').text
+          link = result.select_one('.yuRUbf a')['href']
+          try:
+            snippet = result.select_one('#rso .lyLwlc').text
+          except:
+            snippet = "-"
+
+          # appending data to an array
+          data.append({
+            'title': title,
+            'link': link,
+            'snippet': snippet,
+          })
+      return web.json_response(data)
+  else:
+      return {
+        'success' : False, 
+        'msg' : 'Isi parameter,'
+      } 
+
 @app.route('/textpro/', methods=['GET'])
-def sc():
+def textpro():
   try:
     if request.args.get('q'):
       sesi = requests.Session()
