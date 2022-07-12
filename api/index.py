@@ -43,7 +43,7 @@ def google():
              'link': link,
              'snippet': snippet,
            })
-        return web.json_response(data)
+        return data
       except Exception as e:
         {
         'success' : False, 
