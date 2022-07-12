@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from bs4 import BeautifulSoup
 import requests, json
 
@@ -45,7 +45,7 @@ def google():
                     'link': link,
                     'snippet': snippet,
                 })
-            return data
+            return jsonify({'result': data})
         except Exception as e:
             return e
     else:
