@@ -45,7 +45,10 @@ def google():
            })
         return web.json_response(data)
       except Exception as e:
-        print(e)
+        {
+        'success' : False, 
+        'msg' : e
+       } 
   else:
       return {
         'success' : False, 
