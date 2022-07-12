@@ -26,9 +26,6 @@ def google():
         html = requests.get(f'https://www.google.com/search?q={q}', headers=headers)
         soup = BeautifulSoup(html.text, 'lxml')
 
-        # collect data
-        data = []
-
         for result in soup.select('.tF2Cxc'):
            title = result.select_one('.DKV0Md').text
            link = result.select_one('.yuRUbf a')['href']
@@ -38,12 +35,11 @@ def google():
              snippet = "-"
 
            # appending data to an array
-           data.append({
+           return {
              'title': title,
              'link': link,
              'snippet': snippet,
-           })
-        return data
+           }
       except Exception as e:
        return e
   else:
