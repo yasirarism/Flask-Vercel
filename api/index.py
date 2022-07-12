@@ -45,9 +45,9 @@ def google():
            })
         return data
       except Exception as e:
-        {
-        'success' : False, 
-        'msg' : e
+       return {
+         'success' : False, 
+         'msg' : e
        } 
   else:
       return {
@@ -72,7 +72,7 @@ def textpro():
       }
       rr = sesi.get(url, headers=new) 
       htmlbytes = rr.text
-      soup = bs4(htmlbytes, 'html.parser')
+      soup = BeautifulSoup(htmlbytes, 'html.parser')
       token = soup.find('input', {'name':'token'})['value']
       putprm = (
         ('text[]', (None, neh)), 
@@ -82,7 +82,7 @@ def textpro():
         ('build_id', (None, '1')),
         )
       gazbang = sesi.post(url, files=putprm, headers=new)
-      soupp = bs4(gazbang.text, 'html.parser')
+      soupp = BeautifulSoup(gazbang.text, 'html.parser')
       getdata = soupp.find("div", {"class": "sr-only"}).text
       jonson = json.loads(getdata)
       id = jonson['id']
