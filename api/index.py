@@ -45,11 +45,11 @@ def google():
                     'link': link,
                     'snippet': snippet,
                 })
-            return {'result': data}
+            return {'info': 'Join telegram channel @YasirPediaChannel for updates.', 'result': data}
         except Exception as e:
             print(e)
     else:
-        return {'success': False, 'msg': 'Isi parameter,'}
+        return {'success': False, 'msg': 'Isi parameter query gaes', 'info': 'Join telegram channel @YasirPediaChannel for updates.', }
 
 
 @app.route('/textpro/', methods=['GET'])
@@ -105,7 +105,7 @@ def textpro():
                 'link': 'https://textpro.me' + dcode['image']
             }
         else:
-            return {'success': False, 'msg': 'Isi parameter,'}
+            return {'success': False, 'msg': 'Isi parameter url sama query dulu', 'info': 'Join telegram channel @YasirPediaChannel for updates.', }
     except:
         print('eror')
 
