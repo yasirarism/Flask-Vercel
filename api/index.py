@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from bs4 import BeautifulSoup
-import requests, json, yt_dlp
+import requests, json
 
 app = Flask(__name__)
 
@@ -37,16 +37,18 @@ def lk21():
 @app.route('/youtube', methods=['GET'])
 def youtube():
     if request.args.get('url'):
-        ydl_opts = {}
         url = request.args.get('url')
         try:
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                info = ydl.extract_info(url, download=False)
-                return {
-                    'info':
-                    'Join telegram channel @YasirPediaChannel for updates.',
-                    'result': ydl.sanitize_info(info)
-                }
+            html = requests.get(url)
+            soup = BeautifulSoup(html.text, 'html.parser')
+            body = soup.find_all("body")[0]
+            scripts = body.find_all("script")
+            result = json.loads(scripts[0].string[30:-1])
+            return {
+                'info':
+                'Join telegram channel @YasirPediaChannel for updates.',
+                'result': result['streamingData']['adaptiveFormats']
+            }
         except Exception as e:
             print(e)
     else:
