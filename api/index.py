@@ -17,7 +17,7 @@ def get_docs():
     return render_template('swaggerui.html')
 
 
-@app.route('/lk21/', methods=['GET'])
+@app.route('/lk21', methods=['GET'])
 def lk21():
     if request.args.get('q'):
         query = request.args.get('q')
@@ -34,7 +34,32 @@ def lk21():
         }
 
 
-@app.route('/google/', methods=['GET'])
+@app.route('/youtube', methods=['GET'])
+def youtube():
+    if request.args.get('url'):
+        url = request.args.get('url')
+        try:
+            html = requests.get(url)
+            soup = BeautifulSoup(html.text, 'html.parser')
+            body = soup.find_all("body")[0]
+            scripts = body.find_all("script")
+            result = json.loads(scripts[0].string[30:-1])
+            return {
+                'info':
+                'Join telegram channel @YasirPediaChannel for updates.',
+                'result': result['streamingData']['adaptiveFormats']
+            }
+        except Exception as e:
+            print(e)
+    else:
+        return {
+            'success': False,
+            'msg': 'Isi parameter query gaes',
+            'info': 'Join telegram channel @YasirPediaChannel for updates.',
+        }
+
+
+@app.route('/google', methods=['GET'])
 def google():
     if request.args.get('q'):
         query = request.args.get('q')
@@ -79,7 +104,7 @@ def google():
         }
 
 
-@app.route('/textpro/', methods=['GET'])
+@app.route('/textpro', methods=['GET'])
 def textpro():
     try:
         if request.args.get('q'):
