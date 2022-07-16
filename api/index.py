@@ -65,7 +65,7 @@ def sub_search():
         scraper = cloudscraper.create_scraper()
         param = {'query':query}
         r  = scraper.post("https://subscene.com/subtitles/searchbytitle", data=param).text
-        soup2 = BeautifulSoup(r,"lxml")
+        soup2 = BeautifulSoup(r,"html.parser")
         list = soup2.find("div", {"class": "search-result"})
         a = list.find_all("div", {"class":"title"})
         
