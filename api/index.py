@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from bs4 import BeautifulSoup
-import requests, json
+import requests, json, cloudscraper
 
 app = Flask(__name__)
 
@@ -58,6 +58,37 @@ def youtube():
             'info': 'Join telegram channel @YasirPediaChannel for updates.',
         }
 
+@app.route('/subscene-search', methods=['GET'])
+def sub_search():
+    if request.args.get('q'):
+        query = request.args.get('q')
+        scraper = cloudscraper.create_scraper()
+        param = {'query':query}
+        r  = scraper.post("https://subscene.com/subtitles/searchbytitle", data=param).text
+        soup2 = BeautifulSoup(r,"lxml")
+        list = soup2.find("div", {"class": "search-result"})
+        a = list.find_all("div", {"class":"title"})
+        
+        data = []
+        for i in a:
+            title = i.find_all('a')[0].text
+            url = f"https://subscene.com{i.find_all('a')[0].get('href')}"
+            data.append({
+                'title': title,
+                'url': url,
+            })
+        return {
+            'status':200,
+            'info':
+            'Join telegram channel @YasirPediaChannel for updates.',
+            'result': data
+        }
+    else:
+        return {
+            'success': False,
+            'msg': 'Isi parameter query gaes',
+            'info': 'Join telegram channel @YasirPediaChannel for updates.',
+        }
 
 @app.route('/google', methods=['GET'])
 def google():
