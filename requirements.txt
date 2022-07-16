@@ -1,4 +1,4 @@
 Flask
 requests
 bs4
-yt-dlp
+cloudscraper
